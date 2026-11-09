@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Cabecera principal del landing page -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comunidad Discord | Productos y Free Stuff</title>
+    <meta
+      name="description"
+      content="Comunidad de Discord con Windows, scripts, apps, recursos gratis y productos premium."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <!-- Fondo animado y visual principal -->
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <div class="background-visual" aria-hidden="true"></div>
+
+    <div class="intro-overlay" id="introOverlay" aria-live="assertive">
+      <div class="intro-brand">
+        <div class="brand-mark">D</div>
+        <span>Dios Con Nosotros</span>
+      </div>
+    </div>
+
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="ticker-strip" aria-hidden="true">
+          <div class="ticker-track" id="tickerTrack">
+            <div class="ticker-copy">
+              <span class="ticker-copy-item">TIENDA • SUPPORT 24/7 • ZONA GAMING • WINDOWS • SCRIPTS • APPS</span>
+              <span class="ticker-copy-item">TIENDA • SUPPORT 24/7 • ZONA GAMING • WINDOWS • SCRIPTS • APPS</span>
+            </div>
+            <div class="ticker-copy" aria-hidden="true">
+              <span class="ticker-copy-item">TIENDA • SUPPORT 24/7 • ZONA GAMING • WINDOWS • SCRIPTS • APPS</span>
+              <span class="ticker-copy-item">TIENDA • SUPPORT 24/7 • ZONA GAMING • WINDOWS • SCRIPTS • APPS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="brand-mark">D</div>
+            <span id="brandNameText">Dios Con Nosotros</span>
+          </div>
+
+        </div>
+      </header>
+
+      <main>
+        <div id="homeView">
+          <section id="inicio" class="hero premium-hero fade-in">
+            <div class="hero-copy">
+              <div class="hero-badge reveal-item">
+                <span class="hero-badge-dot"></span>
+                <span>COMUNIDAD ACTIVA</span>
+                <span class="hero-badge-divider"></span>
+                <span>RECURSOS • WINDOWS • SCRIPTS</span>
+              </div>
+
+              <h1 id="communityTitle" class="reveal-item">
+                <span class="hero-title-line">TODO LO QUE NECESITAS</span>
+                <span class="hero-title-line">LO ENCUENTRAS ACÁ EN</span>
+                <span class="hero-title-line hero-title-accent">DCN COMMUNITY.</span>
+              </h1>
+
+              <p id="communitySubtitle" class="reveal-item">
+                Windows, scripts, aplicaciones y recursos creados para llevar tu comunidad al
+                siguiente nivel.
+              </p>
+
+              <div class="hero-actions reveal-item">
+                <a href="/windows" data-route class="btn btn-primary">EXPLORAR RECURSOS →</a>
+                <a href="https://discord.gg/nmadqXrRWz" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">UNIRME A DISCORD</a>
+              </div>
+
+              <div class="stats">
+                <div class="reveal-item">
+                  <strong class="stat-number" data-target="3.2" data-decimals="1" data-suffix="K+">0</strong>
+                  <span>MIEMBROS</span>
+                </div>
+                <div class="reveal-item">
+                  <strong class="stat-number" data-target="150" data-decimals="0" data-suffix="+">0</strong>
+                  <span>RECURSOS</span>
+                </div>
+                <div class="reveal-item">
+                  <strong class="stat-number" data-target="24" data-decimals="0" data-suffix="/7">0</strong>
+                  <span>SOPORTE</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-showcase reveal-item" aria-label="Navegación principal de recursos">
+              <div class="showcase-grid"></div>
+
+              <a href="/fivem" data-route class="showcase-node showcase-node-fivem">
+                <span class="showcase-pulse" aria-hidden="true"></span>
+                <span>FiveM</span>
+              </a>
+              <a href="/windows" data-route class="showcase-node showcase-node-windows">
+                <span class="showcase-pulse" aria-hidden="true"></span>
+                <span>WINDOWS</span>
+              </a>
+              <a href="/apps" data-route class="showcase-node showcase-node-apps">
+                <span class="showcase-pulse" aria-hidden="true"></span>
+                <span>APPS</span>
+              </a>
+              <a href="/comunidad" data-route class="showcase-node showcase-node-community">
+                <span class="showcase-pulse" aria-hidden="true"></span>
+                <span>COMUNIDAD</span>
+              </a>
+
+              <div class="showcase-core-wrap">
+                <span class="showcase-core-glow" aria-hidden="true"></span>
+                <a href="/comunidad" data-route class="showcase-core" aria-label="Ir a Comunidad">DCN</a>
+                <span class="showcase-orbit-dot" aria-hidden="true"></span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div id="routeView" aria-live="polite"></div>
+      </main>
+    </div>
+
+    <div id="requestModal" class="request-modal" hidden aria-hidden="true">
+      <section class="request-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="requestModalTitle" tabindex="-1">
+        <button class="request-modal-close" type="button" data-close-request-modal aria-label="Cerrar">×</button>
+        <div class="request-modal-heading">
+          <img id="requestModalLogo" class="request-card-logo" alt="" aria-hidden="true" hidden>
+          <h2 id="requestModalTitle"></h2>
+        </div>
+        <p id="requestModalMessage"></p>
+        <a href="https://discord.gg/nmadqXrRWz" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Unirme a Discord</a>
+      </section>
+    </div>
+
+    <footer class="site-footer">
+      <span>Dios Con Nosotros</span>
+      <span>Comunidad • Windows • FiveM • Apps</span>
+    </footer>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
