@@ -345,7 +345,9 @@ function setupTicker() {
 }
 
 function setupIntro() {
-  introOverlay.remove();
+  window.addEventListener('load', () => {
+    setTimeout(() => introOverlay.classList.add('hidden'), 1200);
+  });
 }
 
 function renderRoute(path) {
@@ -501,85 +503,6 @@ function setupRequestImageFallbacks(container = document) {
   });
 }
 
-function setupVisitorConsent() {
-  const consentKey = 'dcn-visitor-log-consent-v2';
-  const dialog = document.getElementById('privacyConsent');
-  const acceptButton = document.getElementById('acceptVisitLogging');
-  const rejectButton = document.getElementById('rejectVisitLogging');
-  const settingsButton = document.getElementById('privacySettings');
-  const status = document.getElementById('privacyStatus');
-  let preference = null;
-
-  try {
-    preference = localStorage.getItem(consentKey);
-  } catch (error) {
-    status.textContent = 'No se pudo guardar la preferencia en este navegador.';
-    console.error('No se pudo leer la preferencia de privacidad.', error);
-  }
-
-  function showDialog() {
-    dialog.hidden = false;
-    document.body.classList.add('privacy-consent-open');
-    rejectButton.focus();
-  }
-
-  function closeDialog() {
-    dialog.hidden = true;
-    document.body.classList.remove('privacy-consent-open');
-  }
-
-  function savePreference(value) {
-    preference = value;
-    try {
-      localStorage.setItem(consentKey, value);
-    } catch (error) {
-      status.textContent = 'No se pudo guardar tu preferencia en este navegador.';
-      console.error('No se pudo guardar la preferencia de privacidad.', error);
-    }
-    closeDialog();
-  }
-
-  async function sendVisit(path) {
-    if (preference !== 'accepted') return;
-
-    try {
-      const response = await fetch('/api/visitor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path, consent: true }),
-      });
-      if (!response.ok) {
-        throw new Error(`El servidor respondió ${response.status}.`);
-      }
-      status.textContent = 'Se registró esta visita según tu preferencia.';
-    } catch (error) {
-      status.textContent = 'No se pudo enviar el registro. El sitio sigue disponible.';
-      console.error('No se pudo registrar la visita consentida.', error);
-    }
-  }
-
-  acceptButton.addEventListener('click', () => {
-    savePreference('accepted');
-    void sendVisit(window.location.pathname);
-  });
-
-  rejectButton.addEventListener('click', () => {
-    savePreference('rejected');
-    status.textContent = 'Preferencia guardada: no se enviarán registros de visita.';
-  });
-
-  settingsButton.addEventListener('click', showDialog);
-  window.addEventListener('dcn:pageview', (event) => {
-    void sendVisit(event.detail.path);
-  });
-
-  if (preference === 'accepted') {
-    void sendVisit(window.location.pathname);
-  } else if (preference !== 'rejected') {
-    showDialog();
-  }
-}
-
 function navigate(path, addHistory = true) {
   if (addHistory) history.pushState({}, '', path);
   const activeView = currentRoute === '/' ? homeView : routeView;
@@ -591,7 +514,6 @@ function navigate(path, addHistory = true) {
     const nextView = path === '/' ? homeView : routeView;
     nextView.classList.remove('route-leaving');
     nextView.classList.add('route-entering');
-    window.dispatchEvent(new CustomEvent('dcn:pageview', { detail: { path } }));
     window.setTimeout(() => nextView.classList.remove('route-entering'), 280);
   }, 130);
 }
@@ -692,7 +614,6 @@ setupRouting();
 setupProductLinks();
 setupRequestModal();
 setupRequestImageFallbacks();
-setupVisitorConsent();
 setupRevealAnimations();
 setupStatCounters();
 setupCardGlow();
