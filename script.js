@@ -345,9 +345,7 @@ function setupTicker() {
 }
 
 function setupIntro() {
-  window.addEventListener('load', () => {
-    setTimeout(() => introOverlay.classList.add('hidden'), 1200);
-  });
+  introOverlay.remove();
 }
 
 function renderRoute(path) {
