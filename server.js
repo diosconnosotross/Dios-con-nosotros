@@ -12,6 +12,12 @@ const contentTypes = {
 
 http.createServer((request, response) => {
   const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
+  if (pathname === '/api/visitor') {
+    response.writeHead(501, { 'Content-Type': 'application/json; charset=utf-8' });
+    response.end(JSON.stringify({ error: 'Use Vercel Functions to enable visit logging.' }));
+    return;
+  }
+
   const isProductRoute = /^\/recurso\/\d+$/.test(pathname);
   const requestedFile = routes.has(pathname) || isProductRoute
     ? path.join(root, 'index.html')

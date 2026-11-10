@@ -1176,6 +1176,86 @@ body.request-modal-open {
   overflow: hidden;
 }
 
+.privacy-consent[hidden] {
+  display: none;
+}
+
+.privacy-consent {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.84);
+  backdrop-filter: blur(8px);
+}
+
+.privacy-consent-dialog {
+  width: min(100%, 560px);
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #171717, #080808);
+  box-shadow: var(--shadow);
+}
+
+.privacy-consent-dialog h2 {
+  margin: 0 0 14px;
+  font-family: var(--brand-font);
+  font-size: clamp(1.35rem, 4vw, 1.8rem);
+}
+
+.privacy-consent-dialog p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.privacy-consent-dialog a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.privacy-consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.privacy-consent-actions .btn {
+  cursor: pointer;
+}
+
+body.privacy-consent-open {
+  overflow: hidden;
+}
+
+.privacy-settings {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.privacy-settings:hover,
+.privacy-settings:focus-visible {
+  color: var(--text);
+}
+
+.privacy-status {
+  flex-basis: 100%;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
 .card-top {
   display: flex;
   align-items: center;

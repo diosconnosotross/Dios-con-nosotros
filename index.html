@@ -145,9 +145,48 @@
       </section>
     </div>
 
+    <div id="privacyConsent" class="privacy-consent" hidden>
+      <section
+        class="privacy-consent-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="privacyConsentTitle"
+        aria-describedby="privacyConsentDescription"
+      >
+        <h2 id="privacyConsentTitle">Privacidad y registro de visitas</h2>
+        <p id="privacyConsentDescription">
+          Si aceptas, enviaremos al canal de Discord configurado tu dirección IP,
+          navegador (User-Agent), la página visitada y la fecha y hora. También
+          consultaremos una API externa para obtener una ubicación aproximada
+          (país, región, ciudad, código postal y coordenadas si están disponibles)
+          y una señal del tipo de conexión, que no confirma si usas VPN. Esa API
+          recibirá tu IP. No recopilamos tu correo ni tu identidad de Discord.
+          Si rechazas, podrás usar el sitio normalmente y no enviaremos ese
+          registro. Puedes cambiar tu elección cuando quieras desde el pie de página.
+        </p>
+        <p>
+          Vercel, el proveedor de geolocalización y Discord procesarán los datos
+          descritos para generar y entregar el registro. Consulta la
+          <a href="/privacidad.html">política de privacidad</a>.
+        </p>
+        <div class="privacy-consent-actions">
+          <button id="rejectVisitLogging" class="btn btn-secondary" type="button">
+            Rechazar
+          </button>
+          <button id="acceptVisitLogging" class="btn btn-primary" type="button">
+            Aceptar y continuar
+          </button>
+        </div>
+      </section>
+    </div>
+
     <footer class="site-footer">
       <span>Dios Con Nosotros</span>
       <span>Comunidad • Windows • FiveM • Apps</span>
+      <button id="privacySettings" class="privacy-settings" type="button">
+        Preferencias de privacidad
+      </button>
+      <span id="privacyStatus" class="privacy-status" role="status" aria-live="polite"></span>
     </footer>
 
     <script src="/script.js"></script>
